@@ -1,0 +1,63 @@
+import casa.*
+
+test "test casa en orden y hay vivieres" {
+	
+	assert.that(casa.enOrden())
+	casa.agregarReparacion(1000)
+	assert.that(casa.hayViveresSuficientes())
+	assert.that(casa.hayQueReparar())
+	assert.notThat(casa.enOrden())
+	
+}
+
+test "cuenta corriente" {
+	assert.equals(0, cuentaCorriente.saldo())
+	cuentaCorriente.depositar(50)
+	assert.equals(50, cuentaCorriente.saldo())
+	cuentaCorriente.depositar(30)
+	assert.equals(80, cuentaCorriente.saldo())
+	cuentaCorriente.extraer(20)
+	assert.equals(60, cuentaCorriente.saldo())
+	cuentaCorriente.extraer(10)
+	assert.equals(50, cuentaCorriente.saldo())
+	
+}
+
+test "mantenimiento full sin reparar" {
+	casa.agregarReparacion(100)
+	cuentaCorriente.saldo(1000)
+	casa.mantener()
+	assert.equals(90, casa.viveres())
+	assert.equals(800, cuentaCorriente.saldo())
+	assert.equals(100, casa.reparaciones())
+}
+
+test "mantenimiento full con repararaciones" {
+	casa.agregarReparacion(100)
+	cuentaCorriente.saldo(1500)
+	casa.mantener()
+	assert.equals(90, casa.viveres())
+	assert.equals(1200, cuentaCorriente.saldo())
+	assert.equals(0, casa.reparaciones())
+}
+
+test "mantenimiento full casa en orden" {
+	cuentaCorriente.saldo(1000)
+	casa.mantener()
+	assert.equals(100, casa.viveres())
+	assert.equals(750, cuentaCorriente.saldo())
+	assert.equals(0, casa.reparaciones())
+}
+
+test "saldo insuficiente" {
+	casa.agregarReparacion(100)
+	cuentaCorriente.saldo(150)
+	
+// No se puede mantener! como lo testeo?
+    casa.mantener()
+
+	assert.equals(150, cuentaCorriente.saldo())
+	assert.equals(50, casa.viveres())
+	assert.equals(100, casa.reparaciones())	
+}
+
