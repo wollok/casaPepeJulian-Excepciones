@@ -53,3 +53,9 @@ Cierto día de la semana Pepe y Julián hacen un mantenimiento de la casa. Nos i
 
 
 #### Para pensar: Si se agrega una nueva casa, ¿Es posible usar estas estrategias con ella? ¿Qué mensajes debería entender? (Podés responder con comentarios en el código o directamente inventando otra casa con tu propia implementación para que funcione)
+
+## Excepciones:
+
+Resolver aplicacando excepciones la situación de que se intente mantener una casa con la estrategia full sin que existan fondos suficientes en la cuenta corriente
+
+
